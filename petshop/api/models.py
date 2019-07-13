@@ -21,7 +21,7 @@ class Atendimento(models.Model):
 		('CIRURGIA', 'Cirurgia'),
 		('EXAME', 'Exame'),
 		)
-	pet = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name='atendimento')
+	pet = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name='atendimentos')
 	data_hora = models.DateTimeField(auto_now_add=False)
 	procedimeto = models.CharField(max_length=256, null=True, blank=True)
 	tipo = models.CharField(max_length=20, choices=TIPO)
@@ -29,7 +29,7 @@ class Atendimento(models.Model):
 		return str(self.data_hora)
 
 class Medicamento(models.Model):
-	atendimento = models.ForeignKey(Atendimento, on_delete=models.CASCADE, related_name='atendimento')
+	atendimento = models.ForeignKey(Atendimento, on_delete=models.CASCADE, related_name='medicamentos')
 	nome = models.CharField(max_length=256)
 	dose = models.CharField(max_length=256, null=True, blank=True)
 	frequencia = models.CharField(max_length=256, null=True, blank=True)
