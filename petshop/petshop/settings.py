@@ -25,7 +25,7 @@ SECRET_KEY = 'o*#=r^z^lx-n_^85t2ab&3615r=ilqm6yz(rrzdogvj2$ey*ub'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,8 +41,16 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
-     'corsheaders',
+    'corsheaders',
+    'rest_auth',
+    'rest_auth.registration',
+    'allauth',
+    'allauth.account',
+    'django.contrib.sites',
 ]
+
+SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -99,6 +107,13 @@ JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_EXPIRATION_DELTA': timedelta(days=2),
 }
+
+REST_USE_JWT = True
+
+'''CORS_ORIGIN_WHITELIST = [
+    'https://localhost:4200',
+]'''
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
